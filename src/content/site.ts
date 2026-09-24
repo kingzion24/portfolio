@@ -111,13 +111,12 @@ export const approach = [
 export const now = [
   { label: "Building", body: "Hareha" },
   { label: "Running", body: "Ukowapi, StudyWings" },
-  { label: "Writing", body: "Ozymandis, a Kubernetes PaaS in Go" },
+  { label: "Open to", body: "New projects" },
 ];
 
 export const capabilities = [
   "TypeScript",
   "Flutter",
-  "Go",
   "Laravel",
   "Node",
   "Postgres",
