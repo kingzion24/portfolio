@@ -10,6 +10,10 @@ export const site = {
   location: "Dar es Salaam, TZ",
   timezone: "Africa/Dar_es_Salaam",
   email: "tevinope@gmail.com",
+  /** Stored in full international form; `phoneDisplay` is what people read. */
+  phone: "+255759633127",
+  phoneDisplay: "+255 759 633 127",
+  linkedin: "https://www.linkedin.com/in/tevin-mdendu-314151313",
   available: "Available for work",
   tagline: { lines: ["Software built", "for Tanzania —"], accent: "end to end." },
   intro: "I design, build and run products for the East African market.",
@@ -17,9 +21,21 @@ export const site = {
 } as const;
 
 export const socials = [
+  { label: "LinkedIn", href: "https://www.linkedin.com/in/tevin-mdendu-314151313" },
   { label: "GitHub", href: "https://github.com/kingzion24" },
   { label: "Hareha", href: "https://hareha.com" },
-  { label: "Email", href: "mailto:tevinope@gmail.com" },
+] as const;
+
+/** The contact page's whole content. */
+export const contacts = [
+  { label: "Email", value: "tevinope@gmail.com", href: "mailto:tevinope@gmail.com" },
+  { label: "Phone", value: "+255 759 633 127", href: "tel:+255759633127" },
+  {
+    label: "LinkedIn",
+    value: "tevin-mdendu",
+    href: "https://www.linkedin.com/in/tevin-mdendu-314151313",
+  },
+  { label: "GitHub", value: "kingzion24", href: "https://github.com/kingzion24" },
 ] as const;
 
 export const nav = [
@@ -113,15 +129,6 @@ export const stats = [
   { figure: "2", label: "Languages" },
   { figure: "1", label: "Engineer" },
 ];
-
-/** Tanzanian shilling bands. */
-export const budgets = [
-  "Under TSh 2M",
-  "TSh 2M – 6M",
-  "TSh 6M – 15M",
-  "TSh 15M+",
-  "Not sure yet",
-] as const;
 
 export const faqs = [
   {

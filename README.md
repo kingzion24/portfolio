@@ -61,16 +61,11 @@ down. Above 1024px it pins the section and translates the track by scroll
 progress; narrower windows and `prefers-reduced-motion` get a native
 snap-scrolling row with the same content.
 
-## Contact form
+## Contact
 
-There is no backend: this is a static export, so nothing can receive a POST.
-By default the form composes a pre-filled email and opens the visitor's mail
-client — no submission is stored anywhere in between.
-
-To collect submissions, set `FORM_ENDPOINT` at the top of
-`src/components/contact-form.tsx` to a form service URL (Formspree, Web3Forms, a
-Cloudflare Worker). When set, the form POSTs JSON there and shows a success
-state instead.
+`/contact` is contact details only — email, phone, LinkedIn, GitHub — listed in
+the `contacts` array in `src/content/site.ts`. There is no enquiry form and no
+backend: this is a static export, so nothing could receive a POST anyway.
 
 ## Motion
 

@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import { Reveal } from "@/components/reveal";
-import { ContactForm } from "@/components/contact-form";
-import { faqs, site, socials } from "@/content/site";
+import { Clock } from "@/components/clock";
+import { contacts, faqs, site } from "@/content/site";
 
 export const metadata: Metadata = {
   title: "Contact",
-  description: `Start a project with ${site.name}.`,
+  description: `Reach ${site.name} — ${site.email}, ${site.phoneDisplay}.`,
 };
 
 export default function ContactPage() {
@@ -21,31 +21,40 @@ export default function ContactPage() {
             </span>
           </h1>
         </Reveal>
-
-        <div className="mt-10 flex flex-wrap gap-x-12 gap-y-6 border-t border-line pt-5">
-          <Reveal delay={160}>
-            <a href={`mailto:${site.email}`} className="link-underline text-lead">
-              {site.email}
-            </a>
-          </Reveal>
-          <Reveal delay={220}>
-            <p className="text-muted">{site.location}</p>
-          </Reveal>
-          <Reveal delay={280} className="ml-auto">
-            <div className="flex gap-6">
-              {socials.map((s) => (
-                <a key={s.label} href={s.href} target="_blank" rel="noreferrer" className="link-underline label">
-                  {s.label}
-                </a>
-              ))}
-            </div>
-          </Reveal>
-        </div>
       </section>
 
-      <section className="gutter py-12 md:py-16">
-        <Reveal>
-          <ContactForm />
+      {/* The whole page: four ways to reach me. */}
+      <section className="gutter pb-16">
+        <ul className="border-t border-line">
+          {contacts.map((contact, i) => (
+            <Reveal as="li" key={contact.label} delay={i * 80} className="border-b border-line">
+              <a
+                href={contact.href}
+                target={contact.href.startsWith("http") ? "_blank" : undefined}
+                rel={contact.href.startsWith("http") ? "noreferrer" : undefined}
+                className="group flex flex-wrap items-baseline gap-x-8 gap-y-2 py-6 transition-colors duration-500 hover:text-accent md:py-8"
+              >
+                <span className="label w-24 shrink-0 text-muted transition-colors group-hover:text-accent">
+                  {contact.label}
+                </span>
+                <span className="font-display text-big uppercase transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] md:group-hover:translate-x-3">
+                  {contact.value}
+                </span>
+                <span className="ml-auto label opacity-0 transition-opacity duration-500 group-hover:opacity-100">
+                  &#8599;
+                </span>
+              </a>
+            </Reveal>
+          ))}
+        </ul>
+
+        <Reveal delay={320} className="mt-10 flex flex-wrap items-baseline justify-between gap-4">
+          <p className="flex items-center gap-2 label">
+            <span className="inline-block h-1.5 w-1.5 rounded-full bg-accent" />
+            {site.available}
+          </p>
+          <p className="label text-muted">{site.location}</p>
+          <Clock className="label tabular-nums text-muted" />
         </Reveal>
       </section>
 
