@@ -34,7 +34,7 @@ const html = `<!doctype html>
       }
       h1 {
         font-family: "Inter Tight", sans-serif;
-        font-weight: 600; font-size: 104px; line-height: 0.88;
+        font-weight: 600; font-size: 136px; line-height: 0.88;
         letter-spacing: -0.045em; text-transform: uppercase;
       }
       em {
@@ -57,11 +57,11 @@ const html = `<!doctype html>
   </head>
   <body>
     <div class="meta">
-      <span>${NAME}<span class="muted"> / ${ROLE}</span></span>
+      <span>${ROLE}</span>
       <span class="muted">${PLACE}</span>
     </div>
 
-    <h1>Software built<br />for Tanzania —<br /><em>end to end.</em></h1>
+    <h1>${NAME}<br /><em>end to end.</em></h1>
 
     <div>
       <div class="rule"></div>
