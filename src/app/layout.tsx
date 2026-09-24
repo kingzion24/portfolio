@@ -26,6 +26,13 @@ const serif = Instrument_Serif({
   display: "swap",
 });
 
+/**
+ * Absolute, not relative: metadataBase already carries the /portfolio path, and
+ * a leading-slash URL would resolve against the domain root instead. Chat apps
+ * reject relative image URLs outright.
+ */
+const ogImage = `${site.url}/og.png`;
+
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
@@ -36,8 +43,24 @@ export const metadata: Metadata = {
   openGraph: {
     title: `${site.name} — ${site.role}`,
     description: site.intro,
+    url: site.url,
+    siteName: site.name,
     type: "website",
     locale: "en_GB",
+    images: [
+      {
+        url: ogImage,
+        width: 2400,
+        height: 1260,
+        alt: `${site.name} — ${site.role}, ${site.location}`,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${site.name} — ${site.role}`,
+    description: site.intro,
+    images: [ogImage],
   },
 };
 

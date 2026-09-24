@@ -54,6 +54,19 @@ node scripts/screenshots.mjs
 Paths go through `asset()` in `src/lib/asset.ts`, which prefixes the deployment
 base path — a raw `/work/x.webp` would 404 on Pages.
 
+## Link previews
+
+`public/og.png` is the 1200x630 card chat apps and social sites show when the
+link is shared. Regenerate it after changing the name, role or tagline:
+
+```bash
+node scripts/og-image.mjs
+```
+
+The tags live in `src/app/layout.tsx`. The image URL must be absolute —
+`metadataBase` already carries the `/portfolio` path, so a leading-slash URL
+would resolve against the domain root, and scrapers reject relative URLs.
+
 ## The work gallery
 
 `src/components/horizontal-work.tsx` travels left-to-right as the page scrolls
