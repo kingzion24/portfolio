@@ -29,6 +29,7 @@ export const socials = [
 /** The contact page's whole content. */
 export const contacts = [
   { label: "Email", value: "tevinope@gmail.com", href: "mailto:tevinope@gmail.com" },
+  { label: "Alt email", value: "mdendutevin@gmail.com", href: "mailto:mdendutevin@gmail.com" },
   { label: "Phone", value: "+255 759 633 127", href: "tel:+255759633127" },
   {
     label: "LinkedIn",
