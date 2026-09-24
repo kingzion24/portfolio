@@ -40,7 +40,7 @@ const html = `<!doctype html>
       em {
         font-family: "Instrument Serif", serif;
         font-style: italic; font-weight: 400;
-        text-transform: lowercase; color: #d9481e;
+        text-transform: lowercase; color: #a50d12;
         letter-spacing: -0.02em;
       }
       .rule { height: 1px; background: #d7d3cb; margin-bottom: 28px; }
@@ -51,7 +51,7 @@ const html = `<!doctype html>
       .muted { color: #78756e; }
       .dot {
         display: inline-block; width: 9px; height: 9px; border-radius: 99px;
-        background: #d9481e; margin-right: 12px; vertical-align: middle;
+        background: #a50d12; margin-right: 12px; vertical-align: middle;
       }
     </style>
   </head>

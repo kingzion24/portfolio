@@ -4,8 +4,9 @@ import { motion, useMotionValue, useSpring } from "framer-motion";
 import { useEffect, useState } from "react";
 
 /**
- * A round label that trails the pointer while `active`. Mouse and trackpad only —
- * touch screens have no hover to follow.
+ * A round label that trails just below-right of the pointer while `active`; the
+ * cursor itself stays as it is. Mouse and trackpad only — touch screens have no
+ * hover to follow.
  */
 export function CursorBadge({ active, label }: { active: boolean; label: string }) {
   const [enabled, setEnabled] = useState(false);
@@ -44,7 +45,7 @@ export function CursorBadge({ active, label }: { active: boolean; label: string 
         initial={false}
         animate={{ scale: active ? 1 : 0, rotate: active ? 0 : -45 }}
         transition={{ type: "spring", stiffness: 380, damping: 26 }}
-        className="-ml-12 -mt-12 grid h-24 w-24 place-items-center rounded-full bg-accent label text-bg"
+        className="ml-5 mt-5 grid h-24 w-24 place-items-center rounded-full bg-accent label text-bg"
       >
         {label}
       </motion.div>

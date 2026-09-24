@@ -94,7 +94,7 @@ export function HorizontalWork({ projects }: { projects: Project[] }) {
       rel="noreferrer"
       onPointerEnter={() => setHovered(true)}
       onPointerLeave={() => setHovered(false)}
-      className="group relative block w-[84vw] shrink-0 snap-center sm:w-[70vw] lg:w-[58vw] xl:w-[52vw] [@media(pointer:fine)]:cursor-none"
+      className="group relative block w-[84vw] shrink-0 snap-center sm:w-[70vw] lg:w-[58vw] xl:w-[52vw]"
     >
       <Reveal shift={false} delay={i * 120} className="clip-reveal">
         <div>
