@@ -34,7 +34,9 @@ export function Reveal({ children, delay = 0, className = "", as, shift = true }
           }
         }
       },
-      { rootMargin: "0px 0px -12% 0px", threshold: 0.08 },
+      // No negative bottom margin: content sitting just above the fold must reveal
+      // on load, not wait for a scroll that may never come.
+      { rootMargin: "0px", threshold: 0.1 },
     );
 
     observer.observe(node);

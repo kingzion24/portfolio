@@ -1,27 +1,25 @@
 /**
  * Single source of truth for every word and project on the site.
- * Edit this file — the pages read from it.
+ * Keep entries short — the layout is built for brevity.
  */
 
 export const site = {
-  name: "Zion",
+  name: "Tevin Mdendu",
+  short: "Tevin",
   role: "Software Engineer",
   location: "Dar es Salaam, TZ",
   timezone: "Africa/Dar_es_Salaam",
   email: "tevinope@gmail.com",
-  available: "Open for select projects — Q4 2026",
-  /** Display lines for the hero; `accent` renders as the serif italic final line. */
+  available: "Available for work",
   tagline: { lines: ["Software built", "for Tanzania —"], accent: "end to end." },
-  intro:
-    "I build products for the East African market — bookkeeping for small businesses, location data that actually matches the census, study-abroad systems in two languages. Design, backend, and the infrastructure underneath.",
+  intro: "I design, build and run products for the East African market.",
   url: "https://kingzion24.github.io/portfolio",
 } as const;
 
 export const socials = [
   { label: "GitHub", href: "https://github.com/kingzion24" },
   { label: "Hareha", href: "https://hareha.com" },
-  { label: "LinkedIn", href: "#" },
-  { label: "X / Twitter", href: "#" },
+  { label: "Email", href: "mailto:tevinope@gmail.com" },
 ] as const;
 
 export const nav = [
@@ -33,178 +31,109 @@ export const nav = [
 export type Project = {
   slug: string;
   title: string;
-  client: string;
   year: string;
   category: string;
-  /** Live URL shown on the project row. */
   href: string;
+  /** One line. Resist adding a second. */
   summary: string;
-  /** Two or three concrete facts about the build. */
-  notes: string[];
   stack: string[];
-  /** Two colors used to render the project's placeholder art. Swap for real screenshots later. */
-  art: [string, string];
+  /** Screenshot of the live landing page, in /public/work. */
+  image: string;
 };
 
 export const projects: Project[] = [
   {
     slug: "hareha",
     title: "Hareha",
-    client: "Own platform",
-    year: "2025—26",
-    category: "Platform · Full-stack",
+    year: "2026",
+    category: "Platform",
     href: "https://hareha.com",
     summary:
-      "A business platform for Tanzanian MSMEs. Mali Daftari handles the books; Mali Akili is the AI assistant that reads them — answering questions about sales, stock and expenses in English or Kiswahili, grounded so every figure comes from the owner's own data.",
-    notes: [
-      "Bilingual assistant with per-message language detection and streamed responses over SSE.",
-      "Least-privilege database roles: the model's SQL can read data tables and nothing else.",
-      "Separate UAT and production estates that hold no credentials for each other — no runtime switch to flip by mistake.",
-      "Filament operator dashboard reading the analytics schema across both environments.",
-    ],
-    stack: ["Flutter", "Laravel", "Postgres", "Redis", "MCP", "Supabase"],
-    art: ["#d9481e", "#2b1a12"],
+      "Bookkeeping and an AI assistant for Tanzanian businesses, answering in Kiswahili from their own data.",
+    stack: ["Flutter", "Laravel", "Postgres"],
+    image: "/work/hareha.webp",
   },
   {
     slug: "ukowapi",
     title: "Ukowapi",
-    client: "Own project",
     year: "2026",
-    category: "Civic Tool · Web",
+    category: "Civic tool",
     href: "https://ukowapi.site",
     summary:
-      "Tap one button and it tells you your region, district, ward and village — so you stop filling in the wrong details on forms. Boundaries come from Tanzania's 2022 Population and Housing Census.",
-    notes: [
-      "Resolves GPS coordinates against census boundary polygons entirely in the browser.",
-      "Stores nothing and sends no coordinates to a server — the privacy claim is structural, not a policy.",
-      "Falls back to manual region and district lookup, with nearby wards offered when the fix is uncertain.",
-      "Bilingual Swahili and English throughout.",
-    ],
-    stack: ["TypeScript", "GeoJSON", "Geolocation API"],
-    art: ["#0f3b33", "#7fd1b9"],
+      "One tap returns your region, district, ward and village, from the 2022 census. Nothing leaves the browser.",
+    stack: ["TypeScript", "GeoJSON"],
+    image: "/work/ukowapi.webp",
   },
   {
     slug: "studywings",
     title: "StudyWings",
-    client: "StudyWings",
     year: "2026",
-    category: "Client Work · Full-stack",
+    category: "Client work",
     href: "https://studywings.co.tz",
     summary:
-      "A study-abroad consultancy's whole operation: a public marketing site, a student registration form that mirrors the paper one, and a role-scoped staff dashboard where every submission lands.",
-    notes: [
-      "One Flutter web build and an Express API served from a single domain behind Caddy.",
-      "English and Kiswahili throughout — a visitor's language is stored with their submission so staff know how to reply.",
-      "Cloudflare Turnstile, a honeypot and rate limiting on the public form.",
-      "Zod-validated API, JWT auth, plain SQL migrations on Postgres 16.",
-    ],
-    stack: ["Flutter", "Node / Express", "Postgres", "Docker", "Caddy"],
-    art: ["#1f2a3c", "#8ea6c8"],
+      "A study-abroad consultancy end to end: public site, student registration, and the staff dashboard behind it.",
+    stack: ["Flutter", "Express", "Postgres"],
+    image: "/work/studywings.webp",
   },
 ];
 
 export const services = [
-  {
-    title: "Product Engineering",
-    body: "Whole products, not tickets. Interface through API through schema, shipped by the same pair of hands so nothing is lost in the handoff.",
-  },
-  {
-    title: "Backend & Data",
-    body: "Postgres schemas, migrations you can read, and API surfaces that validate at the edge. Least-privilege roles by default.",
-  },
-  {
-    title: "Infrastructure",
-    body: "Docker, Kubernetes and CI that deploys on merge. Environments separated so a mistake in staging cannot reach production data.",
-  },
-  {
-    title: "AI Integration",
-    body: "Language models wired to real business data — grounded, cost-tracked, and bounded so the answer is always traceable to a row someone owns.",
-  },
-  {
-    title: "Localisation",
-    body: "Bilingual English and Kiswahili products, built in from the first screen rather than retrofitted as a translation pass.",
-  },
+  { title: "Product", body: "Whole products, shipped." },
+  { title: "Backend", body: "Postgres, APIs, migrations you can read." },
+  { title: "Infrastructure", body: "Docker, Kubernetes, deploys on merge." },
+  { title: "AI", body: "Models wired to real data, grounded and traceable." },
 ];
 
 export const approach = [
-  {
-    step: "01",
-    title: "Interrogate",
-    body: "Before anything is built, I want the constraint everyone is avoiding. Most projects fail on an unasked question, not a bad line of code.",
-  },
-  {
-    step: "02",
-    title: "Structure",
-    body: "Schema first, then API, then interface. The data model is the part still standing three years from now.",
-  },
-  {
-    step: "03",
-    title: "Build",
-    body: "I design and ship the same system. That removes the handoff gap where quality usually leaks out of a project.",
-  },
-  {
-    step: "04",
-    title: "Harden",
-    body: "Launch is the midpoint. Separate the environments, lock the permissions, measure the cost, and cut whatever isn't doing work.",
-  },
+  { step: "01", title: "Interrogate", body: "Find the constraint everyone is avoiding." },
+  { step: "02", title: "Structure", body: "Schema first. It outlives the interface." },
+  { step: "03", title: "Build", body: "I ship what I design. No handoff gap." },
+  { step: "04", title: "Harden", body: "Separate, measure, cut." },
 ];
 
-/** What's live and what's in progress. Kept factual — no invented employment history. */
 export const now = [
-  {
-    label: "Building",
-    body: "Hareha — Mali Daftari and Mali Akili, the bookkeeping and AI layer for Tanzanian MSMEs.",
-  },
-  {
-    label: "Maintaining",
-    body: "Ukowapi, a free census-backed location lookup, and the StudyWings platform.",
-  },
-  {
-    label: "Working on",
-    body: "Ozymandis, a self-hosted Kubernetes PaaS in Go that deploys the rest of it.",
-  },
-  {
-    label: "Available for",
-    body: "Client builds where one engineer taking the whole stack is an advantage, not a risk.",
-  },
+  { label: "Building", body: "Hareha" },
+  { label: "Running", body: "Ukowapi, StudyWings" },
+  { label: "Writing", body: "Ozymandis, a Kubernetes PaaS in Go" },
 ];
 
 export const capabilities = [
   "TypeScript",
-  "Flutter / Dart",
+  "Flutter",
   "Go",
-  "PHP / Laravel",
-  "Node / Express",
+  "Laravel",
+  "Node",
   "Postgres",
   "Docker",
   "Kubernetes",
-  "Redis",
-  "Supabase",
-  "LLM integration",
-  "CI/CD",
 ];
 
 export const stats = [
-  { figure: "3", label: "Products live in production" },
-  { figure: "2", label: "Languages shipped in every product" },
-  { figure: "100%", label: "Designed and built end to end" },
+  { figure: "3", label: "Live products" },
+  { figure: "2", label: "Languages" },
+  { figure: "1", label: "Engineer" },
 ];
+
+/** Tanzanian shilling bands. */
+export const budgets = [
+  "Under TSh 2M",
+  "TSh 2M – 6M",
+  "TSh 6M – 15M",
+  "TSh 15M+",
+  "Not sure yet",
+] as const;
 
 export const faqs = [
   {
-    q: "What kind of work do you take?",
-    a: "Builds where owning the whole stack is the point — a product that needs interface, API, database and deployment decided together. I'm least useful dropped into one layer of someone else's architecture.",
+    q: "What do you take on?",
+    a: "Builds where owning the whole stack is the point — interface, API, database and deployment decided together.",
   },
   {
-    q: "How do you scope a project?",
-    a: "A short paid discovery that produces a written brief, a rough architecture and a fixed price for the build. If the brief concludes the project shouldn't happen, you keep the brief and we part cleanly.",
+    q: "What does it cost?",
+    a: "Full builds usually start around TSh 6M. Advisory and audits are billed weekly.",
   },
   {
-    q: "Do you build for the Tanzanian market specifically?",
-    a: "Most of my work is here, and it shows in the defaults: Kiswahili alongside English from the first screen, low-bandwidth budgets, and data that matches local administrative reality rather than an imported assumption.",
-  },
-  {
-    q: "What's your availability?",
-    a: "Two engagements at a time. Current availability is listed at the top of this page — email me and you'll have a reply within two working days.",
+    q: "How fast can you start?",
+    a: "Two projects at a time. Email me and you'll have an answer within two working days.",
   },
 ];

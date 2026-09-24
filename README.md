@@ -21,7 +21,7 @@ npx serve out      # serve the export locally
 | Route      | Contents                                                          |
 | ---------- | ----------------------------------------------------------------- |
 | `/`        | Hero, marquee, statement, services, featured work, approach, CTA   |
-| `/work`    | Project index with cursor-following art preview, live links, stats |
+| `/work`    | Horizontal gallery of the live sites, stats                        |
 | `/about`   | Bio, Now, stack, method                                           |
 | `/contact` | Details, enquiry form, FAQ                                         |
 
@@ -43,15 +43,34 @@ colours (`bg`, `ink`, `muted`, `line`, `accent`), the fluid type scale
 
 ## Project imagery
 
-`src/components/project-art.tsx` renders gradient + grain placeholders from the
-`art` colour pair on each project. Replace that component with `next/image` when
-real case-study photography exists — nothing else needs to change.
+`public/work/*.webp` are real screenshots of each project's live landing page.
+Regenerate them after a site changes:
+
+```bash
+npx puppeteer browsers install chrome   # once
+node scripts/screenshots.mjs
+```
+
+Paths go through `asset()` in `src/lib/asset.ts`, which prefixes the deployment
+base path — a raw `/work/x.webp` would 404 on Pages.
+
+## The work gallery
+
+`src/components/horizontal-work.tsx` travels left-to-right as the page scrolls
+down. Above 1024px it pins the section and translates the track by scroll
+progress; narrower windows and `prefers-reduced-motion` get a native
+snap-scrolling row with the same content.
 
 ## Contact form
 
-`src/components/contact-form.tsx` currently composes a `mailto:` draft. To send
-server-side, swap `handleSubmit` for a `fetch("/api/contact")` and add a route
-handler backed by a mail provider.
+There is no backend: this is a static export, so nothing can receive a POST.
+By default the form composes a pre-filled email and opens the visitor's mail
+client — no submission is stored anywhere in between.
+
+To collect submissions, set `FORM_ENDPOINT` at the top of
+`src/components/contact-form.tsx` to a form service URL (Formspree, Web3Forms, a
+Cloudflare Worker). When set, the form POSTs JSON there and shows a success
+state instead.
 
 ## Motion
 

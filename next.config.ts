@@ -15,6 +15,8 @@ const nextConfig: NextConfig = {
   // Emit work/index.html rather than work.html, which static hosts resolve most reliably.
   trailingSlash: true,
   images: { unoptimized: true },
+  // Exposed to the browser so <img> src values can be prefixed too.
+  env: { NEXT_PUBLIC_BASE_PATH: basePath },
 };
 
 export default nextConfig;

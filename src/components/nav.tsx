@@ -38,7 +38,7 @@ export function Nav() {
             className="pointer-events-auto label transition-opacity hover:opacity-60"
             aria-label={`${site.name} — home`}
           >
-            {site.name}
+            {site.short}
             <span className="ml-2 opacity-50">/ {site.role}</span>
           </Link>
 

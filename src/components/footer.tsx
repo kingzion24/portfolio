@@ -5,56 +5,39 @@ import { Clock } from "@/components/clock";
 export function Footer() {
   return (
     <footer className="bg-ink text-bg">
-      <div className="gutter border-t border-white/10 py-14 md:py-20">
-        <div className="grid gap-12 md:grid-cols-12">
-          <div className="md:col-span-5">
-            <p className="label opacity-40">Index</p>
-            <nav className="mt-5 flex flex-col gap-2">
-              <Link href="/" className="link-underline w-fit text-lead">
-                Home
+      <div className="gutter py-12">
+        <div className="flex flex-wrap items-baseline justify-between gap-x-12 gap-y-8">
+          <nav className="flex flex-wrap gap-x-8 gap-y-2">
+            <Link href="/" className="link-underline label">
+              Home
+            </Link>
+            {nav.map((item) => (
+              <Link key={item.href} href={item.href} className="link-underline label">
+                {item.label}
               </Link>
-              {nav.map((item) => (
-                <Link key={item.href} href={item.href} className="link-underline w-fit text-lead">
-                  {item.label}
-                </Link>
-              ))}
-            </nav>
-          </div>
+            ))}
+          </nav>
 
-          <div className="md:col-span-4">
-            <p className="label opacity-40">Elsewhere</p>
-            <div className="mt-5 flex flex-col gap-2">
-              {socials.map((s) => (
-                <a
-                  key={s.label}
-                  href={s.href}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="link-underline w-fit text-lead"
-                >
-                  {s.label}
-                </a>
-              ))}
-            </div>
-          </div>
-
-          <div className="md:col-span-3">
-            <p className="label opacity-40">Studio</p>
-            <div className="mt-5 flex flex-col gap-2 text-lead">
-              <span>{site.location}</span>
-              <Clock />
-              <a href={`mailto:${site.email}`} className="link-underline w-fit">
-                {site.email}
+          <div className="flex flex-wrap gap-x-8 gap-y-2">
+            {socials.map((s) => (
+              <a
+                key={s.label}
+                href={s.href}
+                target="_blank"
+                rel="noreferrer"
+                className="link-underline label opacity-60"
+              >
+                {s.label}
               </a>
-            </div>
+            ))}
           </div>
         </div>
 
-        <div className="mt-16 flex flex-col justify-between gap-4 border-t border-white/10 pt-6 md:flex-row">
+        <div className="mt-12 flex flex-wrap items-baseline justify-between gap-4 border-t border-white/10 pt-5">
           <p className="label opacity-40">
-            &copy; {new Date().getFullYear()} {site.name}. All rights reserved.
+            &copy; {new Date().getFullYear()} {site.name}
           </p>
-          <p className="label opacity-40">Built with Next.js &amp; TypeScript</p>
+          <Clock className="label tabular-nums opacity-40" />
         </div>
       </div>
     </footer>
