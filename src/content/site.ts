@@ -15,7 +15,7 @@ export const site = {
   phoneDisplay: "+255 759 633 127",
   linkedin: "https://www.linkedin.com/in/tevin-mdendu-314151313",
   available: "Available for work",
-  tagline: { lines: ["Software built", "for Tanzania —"], accent: "end to end." },
+  tagline: { lines: ["Tevin Mdendu"], accent: "end to end." },
   intro: "I design, build and run products for the East African market.",
   url: "https://kingzion24.github.io/portfolio",
 } as const;
