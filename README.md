@@ -8,10 +8,13 @@ oversized tight uppercase display type, hairline rules, numbered index lists.
 
 ```bash
 npm run dev        # dev server on :3000
-npm run build      # production build
-npm start          # serve the build
+npm run build      # static export to out/
 npm run typecheck  # tsc --noEmit
+npx serve out      # serve the export locally
 ```
+
+`next.config.ts` sets `output: "export"`, so there is no Node server and
+`next start` does not apply.
 
 ## Routes
 
@@ -55,3 +58,17 @@ handler backed by a mail provider.
 Scroll reveals are IntersectionObserver + CSS (`src/components/reveal.tsx`,
 `.reveal` / `.line-mask` in `globals.css`). All motion is disabled under
 `prefers-reduced-motion`.
+
+## Deployment
+
+Pushing to `next-site` runs `.github/workflows/deploy.yml`, which type-checks,
+builds a static export and publishes it to GitHub Pages at
+<https://kingzion24.github.io/portfolio/>.
+
+GitHub Pages serves a project site from `/<repo>`, so CI builds with
+`PAGES_BASE_PATH=/portfolio`. That variable is empty locally, which is why
+`npm run dev` needs no sub-path. On a custom domain, set it to `""` and update
+`site.url` in `src/content/site.ts`.
+
+Note that this repo's `main` branch holds an unrelated Flutter project; the site
+lives on `next-site`, and the workflow only watches that branch.

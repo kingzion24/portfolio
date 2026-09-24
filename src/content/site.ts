@@ -14,7 +14,7 @@ export const site = {
   tagline: { lines: ["Software built", "for Tanzania —"], accent: "end to end." },
   intro:
     "I build products for the East African market — bookkeeping for small businesses, location data that actually matches the census, study-abroad systems in two languages. Design, backend, and the infrastructure underneath.",
-  url: "https://example.com",
+  url: "https://kingzion24.github.io/portfolio",
 } as const;
 
 export const socials = [
