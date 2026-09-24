@@ -129,17 +129,102 @@
   background-size: 100% 1px;
 }
 
-@keyframes marquee {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
+/*
+ * Image wipes up into its frame — put on a <Reveal shift={false}>. The clip sits on
+ * the child: IntersectionObserver counts the target's own clip-path, so a fully
+ * clipped target would never be seen and never reveal.
+ */
+.clip-reveal > * {
+  clip-path: inset(100% 0 0 0);
+  transition: clip-path 1.4s var(--ease-out-expo);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+.clip-reveal[data-visible="true"] > * {
+  clip-path: inset(0);
+}
+
+/* Accent rule that draws across a card's top edge on hover */
+.card-sweep {
+  position: relative;
+}
+
+.card-sweep::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 2px;
+  background: var(--color-accent);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.8s var(--ease-out-expo);
+}
+
+.card-sweep:hover::before {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* Status dot with a soft radiating ring */
+.pulse-dot {
+  position: relative;
+}
+
+.pulse-dot::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: inherit;
+  animation: pulse-ring 2.2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+@keyframes pulse-ring {
+  75%,
+  100% {
+    transform: scale(3.2);
+    opacity: 0;
   }
 }
 
-.marquee-track {
-  animation: marquee 34s linear infinite;
+/* Rolling digits — see components/odometer.tsx */
+.odo {
+  display: inline-block;
+  height: 1em;
+  overflow: hidden;
+  line-height: 1;
+}
+
+.odo-col {
+  display: flex;
+  flex-direction: column;
+  transition: transform 1.8s var(--ease-out-expo);
+  transition-delay: calc(var(--reveal-delay, 0ms) + var(--odo-delay, 0ms) + 150ms);
+}
+
+.odo-col > span {
+  height: 1em;
+}
+
+[data-visible="true"] .odo-col {
+  transform: translateY(calc(var(--digit) * -1em));
+}
+
+/* Route-change wipe — see app/template.tsx */
+.page-curtain {
+  position: fixed;
+  inset: 0;
+  z-index: 45;
+  pointer-events: none;
+  background: var(--color-ink);
+  transform-origin: top;
+  animation: curtain-up 0.9s var(--ease-out-expo) 0.05s forwards;
+}
+
+@keyframes curtain-up {
+  to {
+    transform: scaleY(0);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -152,8 +237,12 @@
     transform: none;
     transition: none;
   }
-  .marquee-track {
-    animation: none;
+  .clip-reveal > * {
+    clip-path: none;
+  }
+  .pulse-dot::after,
+  .page-curtain {
+    display: none;
   }
   *,
   *::before,

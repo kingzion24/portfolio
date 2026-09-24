@@ -50,7 +50,7 @@ export default function ContactPage() {
 
         <Reveal delay={320} className="mt-10 flex flex-wrap items-baseline justify-between gap-4">
           <p className="flex items-center gap-2 label">
-            <span className="inline-block h-1.5 w-1.5 rounded-full bg-accent" />
+            <span className="pulse-dot inline-block h-1.5 w-1.5 rounded-full bg-accent" />
             {site.available}
           </p>
           <p className="label text-muted">{site.location}</p>

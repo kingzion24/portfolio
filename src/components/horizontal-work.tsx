@@ -1,7 +1,9 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import { CursorBadge } from "@/components/cursor-badge";
 import { ProjectShot } from "@/components/project-shot";
+import { Reveal } from "@/components/reveal";
 import type { Project } from "@/content/site";
 
 /**
@@ -10,12 +12,16 @@ import type { Project } from "@/content/site";
  * On a wide screen the section pins and the track is translated by scroll
  * progress. Narrow windows and reduced-motion users get a plain snap-scrolling
  * row instead — same content, swipeable, no pinning.
+ *
+ * While pinned, each screenshot also slides a little inside its frame, against
+ * the direction of travel, so the frames read as windows onto something deeper.
  */
 export function HorizontalWork({ projects }: { projects: Project[] }) {
   const sectionRef = useRef<HTMLElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
   const [pinned, setPinned] = useState(false);
   const [progress, setProgress] = useState(0);
+  const [hovered, setHovered] = useState(false);
 
   // Decide the mode once mounted, and follow changes to viewport / motion pref.
   useEffect(() => {
@@ -45,11 +51,22 @@ export function HorizontalWork({ projects }: { projects: Project[] }) {
 
     track.style.transform = `translate3d(${-distance * p}px, 0, 0)`;
     setProgress(p);
+
+    const vw = window.innerWidth;
+    for (const img of track.querySelectorAll<HTMLElement>("[data-parallax] img")) {
+      const frame = img.parentElement!.getBoundingClientRect();
+      // -1 when the frame's centre sits at the left edge, +1 at the right edge.
+      const offset = Math.max(-1, Math.min(1, (frame.left + frame.width / 2 - vw / 2) / (vw / 2)));
+      img.style.transform = `translate3d(${offset * -6}%, 0, 0) scale(1.14)`;
+    }
   }, []);
 
   useEffect(() => {
     if (!pinned) {
       if (trackRef.current) trackRef.current.style.transform = "";
+      for (const img of sectionRef.current?.querySelectorAll<HTMLElement>("[data-parallax] img") ?? []) {
+        img.style.transform = "";
+      }
       return;
     }
 
@@ -75,14 +92,21 @@ export function HorizontalWork({ projects }: { projects: Project[] }) {
       href={project.href}
       target="_blank"
       rel="noreferrer"
-      className="group relative block w-[84vw] shrink-0 snap-center sm:w-[70vw] lg:w-[58vw] xl:w-[52vw]"
+      onPointerEnter={() => setHovered(true)}
+      onPointerLeave={() => setHovered(false)}
+      className="group relative block w-[84vw] shrink-0 snap-center sm:w-[70vw] lg:w-[58vw] xl:w-[52vw] [@media(pointer:fine)]:cursor-none"
     >
-      <ProjectShot
-        src={project.image}
-        title={project.title}
-        priority={i === 0}
-        className="aspect-[16/10] w-full transition-transform duration-[1200ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.015]"
-      />
+      <Reveal shift={false} delay={i * 120} className="clip-reveal">
+        <div>
+          <ProjectShot
+            src={project.image}
+            title={project.title}
+            priority={i === 0}
+            parallax={pinned}
+            className="aspect-[16/10] w-full transition-transform duration-[1200ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.015]"
+          />
+        </div>
+      </Reveal>
       <div className="mt-5 flex items-baseline justify-between gap-6 border-t border-line pt-4">
         <h2 className="font-display text-big uppercase transition-colors duration-500 group-hover:text-accent">
           <span className="label mr-3 align-super text-muted">{String(i + 1).padStart(2, "0")}</span>
@@ -128,6 +152,8 @@ export function HorizontalWork({ projects }: { projects: Project[] }) {
           </div>
         </div>
       </div>
+
+      <CursorBadge active={hovered} label="Visit ↗" />
     </section>
   );
 }

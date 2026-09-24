@@ -6,14 +6,17 @@ export function ProjectShot({
   title,
   className = "",
   priority = false,
+  parallax = false,
 }: {
   src: string;
   title: string;
   className?: string;
   priority?: boolean;
+  /** Marks the frame for HorizontalWork's scroll parallax, which moves the image inside it. */
+  parallax?: boolean;
 }) {
   return (
-    <div className={`relative overflow-hidden bg-line ${className}`}>
+    <div data-parallax={parallax || undefined} className={`relative overflow-hidden bg-line ${className}`}>
       <img
         src={asset(src)}
         alt={`${title} — landing page`}
@@ -21,7 +24,7 @@ export function ProjectShot({
         height={1000}
         loading={priority ? "eager" : "lazy"}
         decoding="async"
-        className="h-full w-full object-cover object-top"
+        className="h-full w-full object-cover object-top will-change-transform"
       />
     </div>
   );

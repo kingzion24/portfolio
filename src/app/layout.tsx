@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Inter, Inter_Tight, Instrument_Serif } from "next/font/google";
 import { Nav } from "@/components/nav";
 import { Footer } from "@/components/footer";
+import { ScrollProgress } from "@/components/scroll-progress";
 import { site } from "@/content/site";
 import "./globals.css";
 
@@ -78,6 +79,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         >
           Skip to content
         </a>
+        <ScrollProgress />
         <Nav />
         <main id="main">{children}</main>
         <Footer />

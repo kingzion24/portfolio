@@ -11,7 +11,10 @@ export function Cta() {
             <h2 className="font-display text-display uppercase">
               <span className="line-mask">
                 <span className="transition-colors duration-500 group-hover:text-accent">
-                  Start a <em className="font-serif lowercase italic">project</em> &#8599;
+                  Start a <em className="font-serif lowercase italic">project</em>{" "}
+                  <span className="inline-block transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-translate-y-[0.12em] group-hover:translate-x-[0.12em]">
+                    &#8599;
+                  </span>
                 </span>
               </span>
             </h2>

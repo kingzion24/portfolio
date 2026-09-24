@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Reveal } from "@/components/reveal";
 import { HorizontalWork } from "@/components/horizontal-work";
 import { Cta } from "@/components/cta";
+import { Odometer } from "@/components/odometer";
 import { projects, stats } from "@/content/site";
 
 export const metadata: Metadata = {
@@ -32,7 +33,7 @@ export default function WorkPage() {
         <div className="grid grid-cols-3 gap-6">
           {stats.map((stat, i) => (
             <Reveal key={stat.label} delay={i * 90}>
-              <p className="font-display text-huge uppercase">{stat.figure}</p>
+              <Odometer value={stat.figure} className="block font-display text-huge uppercase" />
               <p className="mt-2 label text-muted">{stat.label}</p>
             </Reveal>
           ))}

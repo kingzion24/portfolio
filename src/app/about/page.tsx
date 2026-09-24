@@ -67,7 +67,7 @@ export default function AboutPage() {
         </Reveal>
         <ul className="mt-8 grid gap-px bg-line md:grid-cols-4">
           {approach.map((item, i) => (
-            <Reveal as="li" key={item.step} delay={i * 70} className="bg-bg p-6 md:p-8">
+            <Reveal as="li" key={item.step} delay={i * 70} className="card-sweep bg-bg p-6 md:p-8">
               <span className="label text-accent">{item.step}</span>
               <h2 className="mt-5 font-display text-big uppercase">{item.title}</h2>
               <p className="mt-3 text-muted">{item.body}</p>
