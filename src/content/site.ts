@@ -92,6 +92,28 @@ export const projects: Project[] = [
     stack: ["Flutter", "Express", "Postgres"],
     image: "/work/studywings.webp",
   },
+  {
+    slug: "loan-classifier",
+    title: "Loan Classifier",
+    year: "2026",
+    category: "Machine learning",
+    href: "https://loan-classifier.apps.hareha.com",
+    summary:
+      "A triage tool for the credit desk: scores an applicant's risk of default and shows the factors behind it.",
+    stack: ["Python", "XGBoost", "FastAPI"],
+    image: "/work/loan-classifier.webp",
+  },
+  {
+    slug: "water-forecast",
+    title: "Water Demand Forecaster",
+    year: "2026",
+    category: "Machine learning",
+    href: "https://water-forecast.apps.hareha.com",
+    summary:
+      "Live Dar es Salaam weather and the calendar in, a day's expected water demand out, with what drove it.",
+    stack: ["Python", "XGBoost", "FastAPI"],
+    image: "/work/water-forecast.webp",
+  },
 ];
 
 export const services = [
@@ -125,7 +147,7 @@ export const capabilities = [
 ];
 
 export const stats = [
-  { figure: "3", label: "Live products" },
+  { figure: "5", label: "Live products" },
   { figure: "2", label: "Languages" },
   { figure: "1", label: "Engineer" },
 ];

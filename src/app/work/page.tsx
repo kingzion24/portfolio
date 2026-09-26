@@ -7,7 +7,7 @@ import { projects, stats } from "@/content/site";
 
 export const metadata: Metadata = {
   title: "Work",
-  description: "Three products, live in production.",
+  description: "Five products, live in production.",
 };
 
 export default function WorkPage() {

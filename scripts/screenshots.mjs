@@ -20,6 +20,8 @@ const targets = [
   { name: "hareha", url: "https://hareha.com" },
   { name: "ukowapi", url: "https://ukowapi.site" },
   { name: "studywings", url: "https://studywings.co.tz" },
+  { name: "loan-classifier", url: "https://loan-classifier.apps.hareha.com" },
+  { name: "water-forecast", url: "https://water-forecast.apps.hareha.com" },
 ];
 
 const work = await mkdtemp(join(tmpdir(), "shots-"));
